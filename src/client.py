@@ -9,7 +9,8 @@ class BinanceClient:
     """
     def __init__(self, testnet: bool = True):
         self.logger = setup_logger('BinanceClient')
-        self.client = Client(BINANCE_API_KEY, BINANCE_API_SECRET)
+        requests_params = {'timeout': 30}
+        self.client = Client(BINANCE_API_KEY, BINANCE_API_SECRET, requests_params=requests_params)
         # Point the futures base URL to testnet (UM: /fapi)
         if testnet:
             self.client.FUTURES_URL = TESTNET_BASE_URL.rstrip('/') + '/fapi'
