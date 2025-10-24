@@ -1,14 +1,14 @@
 from binance.client import Client
 from binance.exceptions import BinanceAPIException, BinanceRequestException
 from .config import BINANCE_API_KEY, BINANCE_API_SECRET, TESTNET_BASE_URL, DEFAULT_WORKING_TYPE
-from .logger_config import setup_logger
+import logging
 
 class BinanceClient:
     """
     Thin wrapper over python-binance for UM Futures Testnet.
     """
     def __init__(self, testnet: bool = True):
-        self.logger = setup_logger('BinanceClient')
+        self.logger = logging.getLogger(__name__)
         requests_params = {'timeout': 30}
         self.client = Client(BINANCE_API_KEY, BINANCE_API_SECRET, requests_params=requests_params)
         # Point the futures base URL to testnet (UM: /fapi)

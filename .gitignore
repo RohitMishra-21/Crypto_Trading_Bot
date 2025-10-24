@@ -2,3 +2,7 @@
 __pycache__/
 *.pyc
 logs/bot.log
+
+.gemini/
+gha-creds-*.json
+.github/**

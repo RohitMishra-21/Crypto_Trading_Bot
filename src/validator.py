@@ -1,8 +1,7 @@
 import math
-from .logger_config import setup_logger
+import logging
 
-
-logger = setup_logger('Validator')
+logger = logging.getLogger(__name__)
 
 class SymbolFilters:
     def __init__(self, lot_step, min_qty, max_qty, price_tick, min_price, max_price, min_notional):

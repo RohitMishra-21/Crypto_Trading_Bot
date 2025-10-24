@@ -1,7 +1,6 @@
-from ..logger_config import setup_logger
+import logging
 
-
-logger = setup_logger('LimitOrder')
+logger = logging.getLogger(__name__)
 
 def place_limit_order(client, symbol: str, side: str, quantity: float, price: float, tif: str='GTC'):
     logger.info(f"Placing LIMIT {side} {quantity} {symbol} @ {price} {tif}")

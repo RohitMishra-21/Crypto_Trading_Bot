@@ -1,20 +1,22 @@
 import logging
 import os
+import tempfile
 from logging.handlers import RotatingFileHandler
 
-def setup_logger(name: str) -> logging.Logger:
-    log_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), '..', 'logs')
-    log_dir = os.path.abspath(log_dir)
+def setup_logger() -> logging.Logger:
+    # Use a temporary directory for debugging file write issues
+    log_dir = os.path.join(tempfile.gettempdir(), 'binance_bot_logs')
     os.makedirs(log_dir, exist_ok=True)
 
-    logger = logging.getLogger(name)
+    logger = logging.getLogger()
     if logger.handlers:
         return logger  # already configured
 
     logger.setLevel(logging.DEBUG)
 
-    # File handler (rotating)
-    fh = RotatingFileHandler(os.path.join(log_dir, 'bot.log'), maxBytes=2_000_000, backupCount=3)
+    # File handler
+    log_file_path = os.path.join(log_dir, 'bot.log')
+    fh = logging.FileHandler(log_file_path)
     fh.setLevel(logging.DEBUG)
     ffmt = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     fh.setFormatter(ffmt)

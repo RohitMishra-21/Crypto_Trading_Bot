@@ -1,7 +1,6 @@
-from ..logger_config import setup_logger
+import logging
 
-
-logger = setup_logger('MarketOrder')
+logger = logging.getLogger(__name__)
 
 def place_market_order(client, symbol: str, side: str, quantity: float):
     logger.info(f"Placing MARKET {side} {quantity} {symbol}")

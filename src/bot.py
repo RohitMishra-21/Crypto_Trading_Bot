@@ -1,4 +1,5 @@
 import argparse
+import logging
 from .client import BinanceClient
 from .validator import validate_and_normalize
 from .orders.market_orders import place_market_order
@@ -8,7 +9,8 @@ from .orders.advanced.twap import place_twap_orders
 from .orders.advanced.oco import place_oco_order
 from .logger_config import setup_logger
 
-logger = setup_logger('Bot')
+setup_logger()
+logger = logging.getLogger(__name__)
 
 def main():
     p = argparse.ArgumentParser(description='Binance Futures Testnet Trading Bot')
@@ -45,3 +47,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    logging.shutdown()

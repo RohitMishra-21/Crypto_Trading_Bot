@@ -1,7 +1,6 @@
-from ...logger_config import setup_logger
+import logging
 
-
-logger = setup_logger('StopLimit')
+logger = logging.getLogger(__name__)
 
 def place_stop_limit_order(client, symbol: str, side: str, quantity: float, price: float, stop_price: float, tif: str='GTC'):
     """Futures STOP-LIMIT uses type='STOP' with price + stopPrice."""

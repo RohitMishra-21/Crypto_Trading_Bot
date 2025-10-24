@@ -1,7 +1,7 @@
 import time
-from ...logger_config import setup_logger
+import logging
 
-logger = setup_logger('TWAP')
+logger = logging.getLogger(__name__)
 
 def place_twap_orders(client, symbol: str, side: str, total_quantity: float, price: float, chunks: int, interval_seconds: int, tif: str='GTC'):
     assert chunks >= 1, "chunks must be >= 1"

@@ -1,6 +1,6 @@
-from ...logger_config import setup_logger
+import logging
 
-logger = setup_logger('OCO')
+logger = logging.getLogger(__name__)
 
 def place_oco_order(client, symbol: str, side: str, quantity: float, price: float, stop_price: float, stop_limit_price: float, tif: str = 'GTC'):
     """Places a pseudo-OCO order by placing two separate orders (LIMIT and STOP_LIMIT).
